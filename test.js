@@ -39,9 +39,11 @@ describe('Social Tables Help Page', function(){
   // note - change xdescribe to describe to get this code to run
   describe('Logo', function(){
 
+    this.timeout(10000);
+
     beforeEach(function(done){
       d.get('http://help.socialtables.com')
-      // wait for page to load
+      // Use the BeforeEach to to drive the Selenium Driver (ah ha!), once its parked, use function after it, to get the current properties
       .then(d.wait(d.findElement(By.className('navbar-brand')).click()))
       .then(done)
     });
@@ -58,11 +60,25 @@ describe('Social Tables Help Page', function(){
   });
 
   // Test 2
-  xdescribe('Searching for \'Bobby Fisher\'', function(){
+  describe('Searching for \'Bobby Fisher\'', function(){
+
+    this.timeout(10000);
+
+    before(function(done){
+    d.get('http://help.socialtables.com')
+    //we are driving Selenium to go to the search field, type in Bobby Fisher and submitting it
+    .then(d.wait(d.findElement(By.name('inputboxform')).sendKeys('Bobby Fisher')))
+    .then(d.findElement(By.className('tip')).click())
+    .then(done)
+  });
+
     it('should return 0 results', function(done){
 
-      // Insert Your Code Here
-
+      // Insert Your Code
+      d.getCurrentUrl()
+      .then(url => url.should.equal('http://help.socialtables.com/pkb_Home?q=bobby%20fischer&l=en_US'))
+      .then(() => done())
+      .catch(error => done(error));
     });
   });
 

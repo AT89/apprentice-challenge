@@ -88,4 +88,15 @@ Submit a Github issue.
 
 - the logo link is http://socialtables.digihey.com, so i rewrote the test to get it to pass
 
--
+- HOLY MOTOWN test2 passes, finally. now understanding this selenium driver, the beforeEach needs to be used before it, this allows you to 'bot' or 'drive' firefox. Using this, we are left at a checkpoint at (done). Then we can check if the currentUrl is what it is supposed to be.
+
+- Figured out the click() from the past but mainly from the documentation here: https://github.com/SeleniumHQ/selenium/wiki/WebDriverJs and http://bites.goodeggs.com/posts/selenium-webdriver-nodejs-tutorial/ 8. Interacting with the Page
+
+- another Ah Ha moment, noticed that sometimes test 1 would time out and fail and sometimes it would pass, so from the comments before and I figured out that we need to change the default setTimeout of 2000. so added     ```this.timeout(10000);```
+
+- 
+
+
+##Other thoughts
+- We only went through Testing for 1 day total (half day for ruby testing and another half day for Node testing with Jasmine), I do like testing; wish we got more experience but then again we got to learn/build cool stuff
+- I found this node module, it like the option it has to run the tests in multiple browsers with -p https://www.npmjs.com/package/mocha-selenium it also seems to have other nifty things
