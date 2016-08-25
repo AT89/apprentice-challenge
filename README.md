@@ -80,3 +80,12 @@ Submit a pr.
 
 **I still have a question.**
 Submit a Github issue.
+
+##Captains Log (Anh)
+- Was a pain getting it to work, I didnt see the issue that Firefox 48 isnt compatible with Selenium lol. So I had to get Firefox 45.
+
+- Had to research around to figure out that getTitle is a built in function http://bites.goodeggs.com/posts/selenium-webdriver-nodejs-tutorial/
+
+- the logo link is http://socialtables.digihey.com, so i rewrote the test to get it to pass
+
+-

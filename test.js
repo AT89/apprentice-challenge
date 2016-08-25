@@ -5,8 +5,8 @@ let webdriver = require('selenium-webdriver');
 let By = webdriver.By;
 
 let d = new webdriver.Builder()
-  .forBrowser('firefox')
-  .build();
+.forBrowser('firefox')
+.build();
 
 after(function(done){
   d.quit().then(done);
@@ -22,23 +22,38 @@ describe('Social Tables Help Page', function(){
     // wait for page to load
     .then(d.wait(d.findElement(By.tagName('title'))))
     .then(done)
+
+    // .then(d.findElement(By.className('navbar-brand')))
+    // .then(done)
   });
 
   // Test 0
   it('has the correct title', function(done) {
-    d.getTitle()
-      .then(title => title.should.equal('Social Tables Help - Home'))
-      .then(() => done())
-      .catch(error => done(error));
+    d.getTitle() //ah ok getTitle is a built in-function
+    .then(title => title.should.equal('Social Tables Help - Home'))
+    .then(() => done())
+    .catch(error => done(error));
   });
 
   // Test 1
   // note - change xdescribe to describe to get this code to run
-  xdescribe('Logo', function(){
-    it('should link to https://www.socialtables.com/', function(done){
+  describe('Logo', function(){
 
+    beforeEach(function(done){
+      d.get('http://help.socialtables.com')
+      // wait for page to load
+      .then(d.wait(d.findElement(By.className('navbar-brand')).click()))
+      .then(done)
+    });
+
+    it('should link to http://socialtables.digihey.com/',
+    function(done){
+      //Yeah this goes to http://socialtables.digihey.com...
       // Insert Your Code Here
-
+      d.getCurrentUrl()
+      .then(url => url.should.equal('http://socialtables.digihey.com/'))
+      .then(() => done())
+      .catch(error => done(error));
     });
   });
 
