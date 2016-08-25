@@ -84,6 +84,17 @@ describe('Social Tables Help Page', function(){
 
   // Test 3
   xdescribe('Searching for \'event\'', function(){
+
+    this.timeout(10000);
+
+    before(function(done){
+    d.get('http://help.socialtables.com')
+    //we are driving Selenium to go to the search field, type in Bobby Fisher and submitting it
+    .then(d.wait(d.findElement(By.name('inputboxform')).sendKeys('event')))
+    .then(d.findElement(By.className('tip')).click())
+    .then(done)
+  });
+
     it('should return 10 results', function(done){
 
       // Insert Your Code Here
@@ -93,6 +104,17 @@ describe('Social Tables Help Page', function(){
 
   // Test 4
   xdescribe('Searching for a word under three character', function(){
+
+    this.timeout(10000);
+
+    before(function(done){
+    d.get('http://help.socialtables.com')
+    //we are driving Selenium to go to the search field, type in Bobby Fisher and submitting it
+    .then(d.wait(d.findElement(By.name('inputboxform')).sendKeys('gl')))
+    .then(d.findElement(By.className('tip')).click())
+    .then(done)
+  });
+
     it('should trigger an alert box with the text \'Search string must be at least 3 characters long\'', function(done){
 
       // Insert Your Code Here
