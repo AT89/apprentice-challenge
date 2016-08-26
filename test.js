@@ -75,10 +75,11 @@ describe('Social Tables Help Page', function(){
     it('should return 0 results', function(done){
 
       // Insert Your Code
-      d.getCurrentUrl()
-      .then(url => url.should.equal('http://help.socialtables.com/pkb_Home?q=bobby%20fischer&l=en_US'))
-      .then(() => done())
-      .catch(error => done(error));
+      d.isElementPresent(By.className('article'))
+     .then(result => result.to.not.exist(true))
+     .then(() => done())
+     .catch(error => done(error));
+//after looking at the source code forsearch results for bobby fischer  vs search results for event, noticed that article class is not present.
     });
   });
 
@@ -89,7 +90,7 @@ describe('Social Tables Help Page', function(){
 
     before(function(done){
     d.get('http://help.socialtables.com')
-    //we are driving Selenium to go to the search field, type in Bobby Fisher and submitting it
+    //we are driving Selenium to go to the search field, type in event and submitting it
     .then(d.wait(d.findElement(By.name('inputboxform')).sendKeys('event')))
     .then(d.findElement(By.className('tip')).click())
     .then(done)
@@ -109,8 +110,8 @@ describe('Social Tables Help Page', function(){
 
     before(function(done){
     d.get('http://help.socialtables.com')
-    //we are driving Selenium to go to the search field, type in Bobby Fisher and submitting it
-    .then(d.wait(d.findElement(By.name('inputboxform')).sendKeys('gl')))
+    //we are driving Selenium to go to the search field, type in a search query with 2 characters and submitting it
+    .then(d.wait(d.findElement(By.name('inputboxform')).sendKeys('gg')))
     .then(d.findElement(By.className('tip')).click())
     .then(done)
   });
@@ -118,9 +119,16 @@ describe('Social Tables Help Page', function(){
     it('should trigger an alert box with the text \'Search string must be at least 3 characters long\'', function(done){
 
       // Insert Your Code Here
+      // d.switchTo().alert()
+      //   .then
+        (msg =>msg.should.have.thrown('Search string must be at least 3 characters long'))
+        .then(() => done())
+        .catch(error => done(error));
+        }
+      );
 
     });
-  });
+
 
 
 });
