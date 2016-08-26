@@ -76,7 +76,7 @@ describe('Social Tables Help Page', function(){
 
       // Insert Your Code
       d.isElementPresent(By.className('article'))
-     .then(result => result.to.not.exist(true))
+     .then(result => result.should.equal(false))
      .then(() => done())
      .catch(error => done(error));
 //after looking at the source code forsearch results for bobby fischer  vs search results for event, noticed that article class is not present.
@@ -99,7 +99,10 @@ describe('Social Tables Help Page', function(){
     it('should return 10 results', function(done){
 
       // Insert Your Code Here
-
+      d.findElement(By.className('article'))
+      //need to create a counter loop, to add to the counter for every class with article, and expect that counter to equal 10 for test to be true.
+     .then(() => done())
+     .catch(error => done(error));
     })
   });
 
@@ -122,6 +125,7 @@ describe('Social Tables Help Page', function(){
       // d.switchTo().alert()
       //   .then
         (msg =>msg.should.have.thrown('Search string must be at least 3 characters long'))
+        //tried to find the way to check the alert. tried all sorts of 'throw', 'threwn'.'throw' and to.throw etc
         .then(() => done())
         .catch(error => done(error));
         }
